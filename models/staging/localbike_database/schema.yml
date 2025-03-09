@@ -10,6 +10,10 @@ models:
             - unique
             - not_null
 
+
+
+
+
   - name: stg_localbike_database__category
     description: "This model contains information about category"
     columns:
@@ -19,6 +23,19 @@ models:
             - unique
             - not_null
 
+  - name: stg_localbike_database__store
+    description: "This model contains information about store"
+    columns:
+      - name: store_id
+        description: "Primary key, unique identifier for each category"
+        tests:
+            - unique
+            - not_null
+
+
+
+
+
   - name: stg_localbike_database__order
     description: "This model contains information about orders placed by users, including the status of each order."
     columns:
@@ -27,19 +44,19 @@ models:
         tests:
             - unique
             - not_null
-      - name: order_status
-        description: "The current status of the order."
-        tests:
-          - accepted_values:
-              name: accepted_values_order_status
-              values: ['created', 'shipped', 'approved', 'canceled', 'invoiced', 'delivered', 'processing', 'unavailable']
+
       - name: customer_id
         description: "Foreign key linking the order to the user who placed it."
         tests:
           - relationships:
-              name: user_id_id_foreign_key_in_stg_sales_database__order
-              to: ref('stg_sales_database__user')
-              field: user_id
+              name: customer_id_id_foreign_key_in_stg_localbike_database__order
+              to: ref('stg_localbike_database__customer')
+              field: customer_id
+
+
+
+
+
 
   - name: stg_localbike_database__order_item
     description: "This model contains information about each item included in an order, including its price, quantity, and shipping cost."
@@ -53,12 +70,16 @@ models:
         description: "Foreign key linking the order item to the corresponding order."
         tests:
           - relationships:
-              name: order_id_id_foreign_key_in_stg_sales_database__order_item
-              to: ref('stg_sales_database__order')
+              name: order_id_id_foreign_key_in_stg_localbike_database__order_item
+              to: ref('stg_localbike_database__order')
               field: order_id
               
       - name: total_order_item_amount
-        description: "The total amount for this order item, calculated as (price * quantity) + shipping_cost."
+        description: "The total amount for this order item, calculated as (list_price * quantity) * (1-discount)"
+
+
+
+
 
 
   - name: stg_localbike_database__product
@@ -69,6 +90,43 @@ models:
         tests:
             - unique
             - not_null
+      - name: brand_id
+        description: "Foreign key linking the order to the user who placed it."
+        tests:
+          - relationships:
+              name: brand_id_id_foreign_key_in_stg_localbike_database__product
+              to: ref('stg_localbike_database__brand')
+              field: brand_id
+      - name: category_id
+        description: "Foreign key linking the order to the user who placed it."
+        tests:
+          - relationships:
+              name: category_id_id_foreign_key_in_stg_localbike_database__product
+              to: ref('stg_localbike_database__category')
+              field: category_id
+
+
+
+
+  - name: stg_localbike_database__stock
+    description: "This model contains details of stock."
+    columns:
+      - name: store_id
+        description: "Foreign key linking the order to the user who placed it."
+        tests:
+          - relationships:
+              name: store_id_id_foreign_key_in_stg_localbike_database__product
+              to: ref('stg_localbike_database__store')
+              field: store_id
+      - name: product_id
+        description: "Foreign key linking the order to the user who placed it."
+        tests:
+          - relationships:
+              name: product_id_id_foreign_key_in_stg_localbike_database__product
+              to: ref('stg_localbike_database__product')
+              field: product_id
+
+
 
   - name: stg_localbike_database__staff
     description: "This model contains information about the sellers who provide the products."
@@ -85,6 +143,16 @@ models:
               name: manager_id_id_foreign_key_in_stg_localbike_database__order
               to: ref('stg_localbike_database__staff')
               field: staff_id
+      - name: store_id
+        description: "Foreign key linking the order to the user who placed it."
+        tests:
+          - relationships:
+              name: store_id_id_foreign_key_in_stg_localbike_database__order
+              to: ref('stg_localbike_database__store')
+              field: store_id
+
+
+
 
   - name: stg_localbike_database__customer
     description: "This model contains customer-related information, including where they live."

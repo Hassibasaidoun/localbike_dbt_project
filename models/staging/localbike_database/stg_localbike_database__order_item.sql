@@ -4,5 +4,6 @@ order_id,
 product_id,
 quantity,
 discount,
+total_order_item_amount,
 list_price 
 from {{ source('localbike_database', 'order_item') }}
