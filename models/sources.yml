@@ -4,12 +4,12 @@ sources:
   - name: localbike_database
     schema: localbike_database
     tables:
-      - name: brands
-      - name: categories
-      - name: customers
+      - name: brand
+      - name: category
+      - name: customer
       - name: order
       - name: order_item
-      - name: products
-      - name: staffs
-      - name: stocks
-      - name: stores
+      - name: product
+      - name: staff
+      - name: stock
+      - name: store
