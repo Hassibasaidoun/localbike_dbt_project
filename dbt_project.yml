@@ -2,7 +2,7 @@
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: 'my_first_dbt_project'
+name: 'localbike_dbt_project'
 version: '1.0.0'
 config-version: 2
 
@@ -48,8 +48,6 @@ models:
         schema: stg_google_analytics
       sales_database:
         schema: stg_sales_database
-      google_sheets:
-        schema: stg_google_sheets
 
     intermediate:
       materialized: view
