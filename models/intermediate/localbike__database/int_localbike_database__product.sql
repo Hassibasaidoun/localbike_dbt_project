@@ -2,7 +2,7 @@ SELECT
 pr.product_id
 br.brand_name,
 cat.category_name,
-st.store_id,
+st.store_id
 FROM
 {{ ref('stg_localbike_database__product') }} AS pr
 INNER JOIN
