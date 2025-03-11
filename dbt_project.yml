@@ -44,7 +44,8 @@ models:
 
     staging:
       localbike_database:
-        schema: localbike_database
+        schema: stg_localbike_database
+        materialized: view
 
       
 
