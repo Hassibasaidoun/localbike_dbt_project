@@ -1,4 +1,4 @@
-select order_id,
+select ord.order_id,
 ord.order_date, 
 year(ord.order_date) as order_date_year, 
 month(ord.order_date) as order_date_month, 
@@ -10,8 +10,8 @@ c.satate,
 s.store_name,
 st.first_name,
 st.last_name,
-item_quantity,
-total_order_item_amount,
+itm.item_quantity,
+itm.total_order_item_amount
 from 
 {{ ref('stg_localbike_database__order') }} AS odr
 INNER JOIN

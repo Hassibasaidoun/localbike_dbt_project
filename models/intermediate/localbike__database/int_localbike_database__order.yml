@@ -2,7 +2,6 @@ version: 2
 
 models:
   - name: int_localbike_database__order
-    description: '{{ doc("int_localbike_database__order") }}'
     columns:
       - name: order_id
         description: "Primary key, unique identifier for each product."
