@@ -47,10 +47,5 @@ models:
       localbike_database:
         schema: localbike_database
 
-    intermediate:
-      materialized: view
-   
-    mart:
-      materialized: table
       
 
