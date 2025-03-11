@@ -49,11 +49,8 @@ models:
 
     intermediate:
       materialized: view
-      localbike_database: 
-        schema: int_sales_database
-      google_analytics:
-        schema: int_google_analytics
+   
     mart:
-      schema: mart
       materialized: table
+      
 
