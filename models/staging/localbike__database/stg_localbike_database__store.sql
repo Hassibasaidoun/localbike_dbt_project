@@ -6,4 +6,4 @@ street,
 city,
 state,	
 zip_code
-from {{ source('localbike_database', 'store') }}
+from {{ source('localbike__database', 'stores') }}

@@ -7,4 +7,4 @@ phone	,
 active,
 store_id,	
 manager_id	
-from {{ source('localbike_database', 'staff') }}
+from {{ source('localbike__database', 'staffs') }}

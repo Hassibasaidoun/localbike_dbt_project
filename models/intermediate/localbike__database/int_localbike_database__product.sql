@@ -2,8 +2,8 @@ SELECT
 br.brand_name,
 cat.category_name,
 st.store_id,
-sum(pr.list_price),
-sum(coalesce(st.quantity,0)),
+sum(pr.list_price) list_price,
+sum(coalesce(st.quantity,0)) quantity,
 sum(coalesce(st.quantity,0) * pr.list_price ) total_cost
 FROM
 {{ ref('stg_localbike_database__product') }} AS pr

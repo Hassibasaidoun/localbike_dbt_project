@@ -5,4 +5,4 @@ brand_id,
 category_id,
 model_year,
 list_price
-from {{ source('localbike_database', 'product') }}
+from {{ source('localbike__database', 'products') }}

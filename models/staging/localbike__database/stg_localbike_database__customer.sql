@@ -6,5 +6,5 @@ email	,
 street	,
 city	,
 state	,
-zip_code,	
-from {{ source('localbike_database', 'customer') }}
+zip_code	
+from {{ source('localbike__database', 'customers') }}

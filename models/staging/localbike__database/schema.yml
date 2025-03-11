@@ -61,7 +61,7 @@ models:
   - name: stg_localbike_database__order_item
     description: "This model contains information about each item included in an order, including its price, quantity, and shipping cost."
     columns:
-      - name: item_id
+      - name: order_item_id
         description: "Primary key, unique identifier for each order item."
         tests:
             - unique
@@ -73,7 +73,13 @@ models:
               name: order_id_id_foreign_key_in_stg_localbike_database__order_item
               to: ref('stg_localbike_database__order')
               field: order_id
-              
+      - name: item_id
+        description: "Foreign key linking the order item to the corresponding order."
+        tests:
+          - relationships:
+              name: item_id_id_foreign_key_in_stg_localbike_database__order_item
+              to: ref('stg_localbike_database__product')
+              field: product_id           
       - name: total_order_item_amount
         description: "The total amount for this order item, calculated as (list_price * quantity) * (1-discount)"
 

@@ -3,9 +3,8 @@ select
    order_date,
    order_id,
    order_status,
-   order_status,
    required_date,
    shipped_date,
    staff_id,
    store_id
-from {{ source('localbike_database', 'order') }}
+from {{ source('localbike__database', 'orders') }}
