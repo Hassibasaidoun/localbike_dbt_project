@@ -43,7 +43,6 @@ models:
   localbike_dbt_project:
 
     staging:
-      materialized: view
       localbike_database:
         schema: localbike_database
 
