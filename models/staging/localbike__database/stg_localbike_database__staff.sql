@@ -6,5 +6,5 @@ email	,
 phone	,
 active,
 store_id,	
-manager_id	
+case when manager_id = 'NULL' THEN null else manager_id end as manager_id
 from {{ source('localbike__database', 'staffs') }}
