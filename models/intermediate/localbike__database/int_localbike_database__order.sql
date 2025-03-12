@@ -1,28 +1,29 @@
-select ord.order_id,
+select ord.order_id, 
 ord.order_date, 
-year(ord.order_date) as order_date_year, 
-month(ord.order_date) as order_date_month, 
-odr.order_status,
-odr.required_date,
-odr.shipped_date,
+EXTRACT(YEAR FROM ord.order_date) as order_date_year, 
+EXTRACT(MONTH FROM ord.order_date) as order_date_month, 
+ord.order_status,
+ord.required_date,
+ord.shipped_date,
 c.city, 
-c.satate, 
+c.state, 
 s.store_name,
-st.first_name,
-st.last_name,
+staff.first_name,
+staff.last_name,
+itm.product_id,
 itm.item_quantity,
 itm.total_order_item_amount
-from 
-{{ ref('stg_localbike_database__order') }} AS odr
+FROM
+{{ ref('stg_localbike_database__order') }} AS ord
 INNER JOIN
 {{ ref('stg_localbike_database__order_item') }} itm
-ON odr.order_id = itm.order_id
+ON ord.order_id = itm.order_id
 INNER JOIN
 {{ ref('stg_localbike_database__customer') }} c
-ON odr.customer_id = c.customer_id
+ON ord.customer_id = c.customer_id
 INNER JOIN
 {{ ref('stg_localbike_database__store') }} s
-ON odr.store_id = s.store_id
+ON ord.store_id = s.store_id
 LEFT JOIN
-{{ ref('stg_localbike_database__staff') }} st
-ON ord.staff_id = st.sttaf_id
+{{ ref('stg_localbike_database__staff') }} staff
+ON ord.staff_id = staff.staff_id
