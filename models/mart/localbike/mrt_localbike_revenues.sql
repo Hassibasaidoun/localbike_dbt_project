@@ -4,7 +4,10 @@ select
     ord.order_date_month,
     ord.city,
     ord.state,
-    ord.store_name, 
+    ord.store_name,
+    pr.category_name, 
+    pr.product_name,
+    pr.brand_name,
     count(ord.order_id) as total_orders,
     sum(ord.item_quantity) as total_item_quantity,
     sum(ord.total_order_item_amount) as total_order_item_amount,
@@ -20,4 +23,7 @@ group by
     ord.order_date_month,
     ord.city,
     ord.state,
-    ord.store_name
+    ord.store_name,
+    pr.category_name,
+    pr.product_name,
+    pr.brand_name
