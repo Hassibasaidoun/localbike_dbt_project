@@ -5,9 +5,10 @@ select
     ord.city,
     ord.state,
     ord.store_name, 
+    count(ord.order_id) as total_orders,
     sum(ord.item_quantity) as total_item_quantity,
     sum(ord.total_order_item_amount) as total_order_item_amount,
-    sum(ord.total_order_item_amount - (ord.item_quantity * pr.list_price)) as total_revenue
+    avg(ord.total_order_item_amount) as avg_order_amount
 FROM 
 {{ ref('int_localbike_database__order') }} AS ord
 INNER JOIN {{ ref('int_localbike_database__product') }} as pr
